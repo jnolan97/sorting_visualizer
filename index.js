@@ -9,9 +9,11 @@ async function bubbleSort() {
             if(array[j] > array[j+1]){
                 await swapping(array,j,j+1)
                 console.log(array)
+                populateData()
             }
         }
     } //console.log(array)
+   // depopulateData()
 }
 
 async function swapping(array,i,j) {
@@ -26,3 +28,21 @@ async function swapping(array,i,j) {
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
 }
+
+function populateData() {
+    document.getElementById("array").style.backgroundSize = 200
+    document.getElementById("array").style.backgroundColor = "red"
+    for(let a = 0; a < array_length; a++){
+       //document.getElementById("array").append(array[a])
+       document.getElementById("array").innerHTML = array
+        
+    }
+}
+
+// function depopulateData(){
+//     for(let a = 0; a < array_length; a++){
+//         document.getElementById("array").innerHTML = ""
+        
+//     }
+// }
+populateData()
