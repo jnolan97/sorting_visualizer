@@ -1,4 +1,8 @@
-let array = [5,4,1,2]
+let array_length = prompt("Enter length of array to be sorted")
+let array = []
+for(let k = 0; k < array_length; k++){
+    array.push(Math.floor(Math.random()*10))
+}
 async function bubbleSort() {
     for(let i = 0; i < array.length; i++){
         for(let j = 0; j < array.length - 1; j++){
@@ -15,7 +19,7 @@ async function swapping(array,i,j) {
     let temp = array[i]
     array[i]= array[j]
     array[j] = temp
-    await sleep(2000)
+    await sleep(1000)
     
 }
 
