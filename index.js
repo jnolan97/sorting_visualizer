@@ -21,9 +21,48 @@ async function bubbleSort() {
     } //console.log(array)
    //depopulateData()
    setDivs()
-   
 }
+function mergeHelper(){
+    return merge(array)
+}
+function merge(array){
+    const middle = Math.floor(array.length / 2)
+    const left = array.slice(0,middle)
+    const right = array.slice(middle)
+    console.log("right",left)
+    if(array.length <= 1){
+        return array
+    }
 
+    return mergeSort(merge(left),merge(right))
+}
+function mergeSort(left,right){
+    let values = []
+    let leftIndex = 0
+    let rightIndex = 0
+    // if(array.length <= 1){
+    //     return values
+    // }
+    while (leftIndex <= left.length && rightIndex < right.length){
+        if (left[leftIndex] < right[rightIndex]){
+            values.push(left[leftIndex])
+            leftIndex++
+        } else {
+            values.push(right[rightIndex])
+            rightIndex++
+        }
+    }
+    // for(let j of left){
+    //     values.push(j)
+    // }
+    // for(let k of right){
+    //     values.push(k)
+    // }
+    console.log("mergesort", values)
+    return values
+    .concat(left.slice(leftIndex))
+    .concat(right.slice(rightIndex))
+}
 async function insertionSort() {
     
     for(let i = 0; i < array.length; i++){
@@ -75,10 +114,6 @@ async function swap(array,i,j) {
     await sleep(1000)
 
     removeDivsInsertion()
-}
-
-function sleep(ms){
-    return new Promise(resolve => setTimeout(resolve,ms))
 }
 
  function populateData() {
@@ -153,7 +188,6 @@ function removeDivsInsertion(){
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
 }
-
 // function populateData() {
 //     document.getElementById("array").style.backgroundSize = 200
 //     document.getElementById("array").style.backgroundColor = "red"
