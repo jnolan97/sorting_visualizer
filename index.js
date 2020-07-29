@@ -96,13 +96,13 @@ function setDivs() {
     for(let x = 0; x < array_length; x++){
     $(`<span id='arraynums${x}' />`).text(array[x]).appendTo('body');
     let elem = document.getElementById(`arraynums${x}`);
-    elem.style.height = array[x] + "00px";
-    elem.style.width = "40px";
+    elem.style.height = array[x] + "10px";
+    elem.style.width = "10px";
     elem.style.backgroundColor = "black"
-    elem.style.padding = "20px"
+    elem.style.padding = "10px"
     elem.style.color = "white"
     elem.style.display = "block"
-    elem.style.margin = "0 auto"
+    elem.style.margin = "5px"
     elem.style.float = "left"
 
 
@@ -113,17 +113,14 @@ function setDivsInsertion() {
     for(let x = 0; x < array_length; x++){
     $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('body');
     let elem = document.getElementById(`arraynums2${x}`);
-    elem.style.height = array[x] + "00px";
-    elem.style.width = "40px";
+    elem.style.height = array[x] + "10px";
+    elem.style.width = "10px";
     elem.style.backgroundColor = "black"
-    elem.style.padding = "20px"
+    elem.style.padding = "10px"
     elem.style.color = "white"
     elem.style.display = "block"
-    //elem.style.margin = "0 auto"
+    elem.style.margin = "5px"
     elem.style.float = "right"
-
-
-
     }
 }
 
