@@ -24,6 +24,24 @@ async function bubbleSort() {
    
 }
 
+async function insertionSort() {
+    
+    for(let i = 0; i < array.length; i++){
+        for(let j = 0; j < array.length - 1; j++){
+            if(array[j] > array[j+1]){
+                setDivsInsertion()
+                await swap(array,j,j+1)
+                console.log(array)
+                //populateData()
+                
+                //depopulateData()
+            }
+        }
+    } //console.log(array)
+   //depopulateData()
+   setDivsInsertion()
+   
+}
 // async function swapping(array,i,j) {
 // }
 // async function bubbleSort() {
@@ -49,6 +67,16 @@ async function swapping(array,i,j) {
     removeDivs()
 }
 
+async function swap(array,i,j) {
+    
+    let temp = array[i]
+    array[i]= array[j]
+    array[j] = temp
+    await sleep(1000)
+
+    removeDivsInsertion()
+}
+
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
 }
@@ -62,6 +90,7 @@ function sleep(ms){
         $("<div class='arraynums' />").text(array[a]).appendTo('body');
     }
 } 
+
 
 function setDivs() {
     for(let x = 0; x < array_length; x++){
@@ -80,10 +109,34 @@ function setDivs() {
 
     }
 }
+function setDivsInsertion() {
+    for(let x = 0; x < array_length; x++){
+    $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('body');
+    let elem = document.getElementById(`arraynums2${x}`);
+    elem.style.height = array[x] + "00px";
+    elem.style.width = "40px";
+    elem.style.backgroundColor = "black"
+    elem.style.padding = "20px"
+    elem.style.color = "white"
+    elem.style.display = "block"
+    //elem.style.margin = "0 auto"
+    elem.style.float = "right"
+
+
+
+    }
+}
 
 function removeDivs(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynums${j}`);
+        elem.parentNode.removeChild(elem)
+        //$(`<span id='arraynums${j}' />`).remove()
+    }
+}
+function removeDivsInsertion(){
+    for(let j = 0; j < array_length; j++){
+        let elem = document.getElementById(`arraynums2${j}`);
         elem.parentNode.removeChild(elem)
         //$(`<span id='arraynums${j}' />`).remove()
     }
@@ -99,8 +152,6 @@ function removeDivs(){
  }
 //populateData()
 
-    
-}
 
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
