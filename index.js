@@ -23,46 +23,85 @@ async function bubbleSort() {
    setDivs()
 }
 function mergeHelper(){
-    return merge(array)
+    return mergeSort(array)
 }
-function merge(array){
-    const middle = Math.floor(array.length / 2)
-    const left = array.slice(0,middle)
-    const right = array.slice(middle)
-    console.log("right",left)
-    if(array.length <= 1){
-        return array
+async function mergeSort(array) {
+    var arrays = [array.slice()],
+    n = array.length,
+    array0 = array,
+    array1 = new Array(n);
+  
+    for (var m = 1; m < n; m <<= 1) {
+      for (var i = 0; i < n; i += (m << 1)) {
+          merge(i, Math.min(i + m, n), Math.min(i + (m << 1), n));
+      }
+      arrays.push(array1.slice());
+      array = array0, array0 = array1, array1 = array;
+      await sleep(1000)
+      console.log("display",arrays)
     }
+  
+  async function merge(left, right, end) {
+    for (var i0 = left, i1 = right, j = left; j < end; ++j) {
+      array1[j] = array0[i0 < right && (i1 >= end || array0[i0] <=    array0[i1]) ? i0++ : i1++];
+     }
+   }
+//    console.log('mergesort',arrays)
+   return arrays;
+  } 
+async function displayMerge(arrays){
+    await sleep(1000)
+    console.log("display",arrays)
+} 
+//  async function merge(array){
+//     const middle = Math.floor(array.length / 2)
+//     const left = array.slice(0,middle)
+//     const right = array.slice(middle)
+//    // console.log("right",left)
+//     if(array.length <= 1){
+//         return array
+//     }
 
-    return mergeSort(merge(left),merge(right))
-}
-function mergeSort(left,right){
-    let values = []
-    let leftIndex = 0
-    let rightIndex = 0
-    // if(array.length <= 1){
-    //     return values
-    // }
-    while (leftIndex <= left.length && rightIndex < right.length){
-        if (left[leftIndex] < right[rightIndex]){
-            values.push(left[leftIndex])
-            leftIndex++
-        } else {
-            values.push(right[rightIndex])
-            rightIndex++
-        }
-    }
-    // for(let j of left){
-    //     values.push(j)
-    // }
-    // for(let k of right){
-    //     values.push(k)
-    // }
-    console.log("mergesort", values)
-    return values
-    .concat(left.slice(leftIndex))
-    .concat(right.slice(rightIndex))
-}
+//    await mergeSort(merge(left),merge(right))
+// }
+// async function mergeSort(left,right){
+//     let values = []
+//     let leftIndex = 0
+//     let rightIndex = 0
+//     // if(array.length <= 1){
+//     //     return values
+//     // }
+//     while (leftIndex <= left.length && rightIndex < right.length){
+//         if (left[leftIndex] < right[rightIndex]){
+//             values.push(left[leftIndex])
+//           //  console.log("merging",values)
+//             leftIndex++
+//         } else {
+//             values.push(right[rightIndex])
+//           //  console.log("merging",values)
+//             rightIndex++
+//         }
+//     }
+//     // for(let j=0; j<left.length; j++){
+//     //     values.push(left[j])
+//     // }
+
+//     // console.log("mergesort", left,right)
+//     console.log("sorted",values)
+//     // await sleep(1000)
+//      values //.concat(left.length ? left:right)
+//     .concat(left.slice(leftIndex))
+//     .concat(right.slice(rightIndex))
+//     for(let k=0; k<right.length; k++){
+//         await values.push(right[k])
+//     }
+//     // return returnValues(values)
+// }
+// async function returnValues(values){
+//     await sleep(1000)
+//     console.log('values',values)
+//     return values
+// }
 async function insertionSort() {
     
     for(let i = 0; i < array.length; i++){
