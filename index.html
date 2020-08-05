@@ -1,26 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-<link rel="stylesheet" href="css/main.css">
-<script src="index.js" defer></script>
-<title>Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="index.js" defer></script>
+    <title>Sorting Visualization</title>
 </head>
+
 <body>
-<h1 style="float:left;">Bubble Sort</h1>
-<button class="testing" onClick="bubbleSort(); insertionSort(); mergeHelper()">Test</button>
+    <div class="container-fluid ">
+        <div class="row heading">
+            <div class="col-md-6">
+                <h1 style="text-align: right;">Sorting Visualizor</h1>
+            </div>
+            <div class="col-md-6"><button class="testing" onClick="bubbleSort(); insertionSort(); mergeHelper(); quickSort();">Sort</button></div>
+            
+            
+        </div>
+        <div class="row ">
+            <div class="col-md-6">
+                
+                <div id="bubble"><h1 class="bubble-header">Bubble Sort</h1></div>
+            </div>
+            <div class="col-md-6">
+                
+                <div id="insertion"><h1 class="insertion-header">Insertion Sort</h1></div>
+            </div>
+                
 
-<h1 style="float:right;">Insertion Sort</h1>
-<div style="clear: both;"></div>
+                
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                
+                <div id="merge">
+                    <h1 class="merge-header">Merge Sort</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                
+                <div id="quick">
+                    <h1 class="quick-header">Quick Sort</h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        
+
+        
+
+    </div>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+
 </html>
