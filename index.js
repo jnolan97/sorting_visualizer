@@ -25,7 +25,6 @@ async function mergeSort(array) {
     n = array.length,
     array0 = array,
     array1 = new Array(n);
-  
     for (var m = 1; m < n; m <<= 1) {
       for (var i = 0; i < n; i += (m << 1)) {
           merge(i, Math.min(i + m, n), Math.min(i + (m << 1), n));
@@ -34,6 +33,9 @@ async function mergeSort(array) {
       array = array0, array0 = array1, array1 = array;
       await sleep(1000)
       console.log("display",arrays)
+      setDivsMerge()
+      await sleep(1000)
+      removeDivsMerge()
     }
   
   async function merge(left, right, end) {
@@ -42,12 +44,11 @@ async function mergeSort(array) {
      }
    }
 //    console.log('mergesort',arrays)
+setDivsMerge()
    return arrays;
+  
   } 
-async function displayMerge(arrays){
-    await sleep(1000)
-    console.log("display",arrays)
-} 
+
 //  async function merge(array){
 //     const middle = Math.floor(array.length / 2)
 //     const left = array.slice(0,middle)
@@ -58,7 +59,7 @@ async function displayMerge(arrays){
 //     }
 
 
-function quickSort() {
+/* function quickSort() {
     if (array.length <= 1) { 
         setDivsQuickSort()
         return array;
@@ -70,19 +71,19 @@ function quickSort() {
         let pivot = array.pop();
         let length = array.length;
         for (let i = 0; i < length; i++) {
-            console.log(array)
-            setDivsQuickSort()
+            console.log("quick",array)
+            
             if (array[i] <= pivot) {
                 left.push(array[i]);
             } else {
                 right.push(array[i]);
             }
         }
-
+        setDivsQuickSort()
         return newArray.concat(quickSort(left), pivot, quickSort(right));
     }
     
-}
+} */
 
 
 
@@ -193,48 +194,43 @@ async function swap(array,i,j) {
 
 function setDivs() {
     for(let x = 0; x < array_length; x++){
-    $(`<span id='arraynums${x}' />`).text(array[x]).appendTo('body');
+    $(`<span id='arraynums${x}' />`).text(array[x]).appendTo('#bubble');
     let elem = document.getElementById(`arraynums${x}`);
     elem.style.height = array[x] + "10px";
-    elem.style.width = "10px";
-    elem.style.backgroundColor = "black"
-    elem.style.padding = "10px"
+    elem.style.backgroundColor = "pink"
+    elem.style.padding = "20px"
     elem.style.color = "white"
     elem.style.display = "block"
     elem.style.margin = "5px"
     elem.style.float = "left"
-
-
-
     }
 }
+
 function setDivsInsertion() {
     for(let x = 0; x < array_length; x++){
-    $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('body');
+    $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('#insertion');
     let elem = document.getElementById(`arraynums2${x}`);
     elem.style.height = array[x] + "10px";
-    elem.style.width = "10px";
     elem.style.backgroundColor = "black"
-    elem.style.padding = "10px"
+    elem.style.padding = "20px"
     elem.style.color = "white"
     elem.style.display = "block"
     elem.style.margin = "5px"
-    elem.style.float = "right"
+    elem.style.float = "left"
     }
 }
 
 function setDivsQuickSort() {
     for(let x = 0; x < array_length; x++){
-    $(`<span id='arraynumsquick${x}' />`).text(array[x]).appendTo('body');
+    $(`<span id='arraynumsquick${x}' />`).text(array[x]).appendTo('#quick');
     let elem = document.getElementById(`arraynumsquick${x}`);
     elem.style.height = array[x] + "10px";
-    elem.style.width = "10px";
-    elem.style.backgroundColor = "black"
-    elem.style.padding = "10px"
+    elem.style.backgroundColor ="green"
+    elem.style.padding = "20px"
     elem.style.color = "white"
     elem.style.display = "block"
     elem.style.margin = "5px"
-    elem.style.float = "right"
+    elem.style.float = "left"
     }
 }
 
@@ -253,6 +249,13 @@ function removeDivsInsertion(){
     }
 }
 
+function removeDivsMerge(){
+    for(let j = 0; j < array_length; j++){
+        let elem = document.getElementById(`arraynumsmerge${j}`);
+        elem.parentNode.removeChild(elem)
+        //$(`<span id='arraynums${j}' />`).remove()
+    }
+}
 
 
  function depopulateData(){
@@ -283,3 +286,87 @@ function sleep(ms){
         
 //     }
 // }
+
+function setDivsMerge() {
+    for(let x = 0; x < array_length; x++){
+    $(`<span id='arraynumsmerge${x}' />`).text(array[x]).appendTo('#merge');
+    let elem = document.getElementById(`arraynumsmerge${x}`);
+    elem.style.height = array[x] + "10px";
+    elem.style.backgroundColor = "blue"
+    elem.style.padding = "20px"
+    elem.style.color = "white"
+    elem.style.display = "block"
+    elem.style.margin = "5px"
+    elem.style.float = "left"
+    }
+}
+
+
+async function quickSort(){
+    quickSortHelper(array, 0 , (array_length) - 1)
+}
+
+async function quickSortHelper(array, start, end) {
+    setDivsQuickSort()
+    await sleep(1000)
+    
+    
+console.log(array)
+  if (start >= end) return;
+  //define pivot, start, end
+  const pivot = start
+  let left = pivot + 1
+  let right = end
+  
+  while(right >= left){
+    if (array[left] > array[pivot] && array[right] < array[pivot]){
+    swap(left,right,array);
+    }
+    if (array[left] <= array[pivot])  left++;
+    if (array[right] >= array[pivot]) right--;
+    }
+    swap(pivot,right,array);
+    const leftSubarrayIsSmaller = right - 1 - start < end - (right + 1);
+    if (leftSubarrayIsSmaller) {
+        quickSortHelper(array,start,right-1);
+        quickSortHelper(array, right+1, end);
+    } else{
+        quickSortHelper(array, right + 1, end);
+        quickSortHelper(array, start, right -1);
+    }
+  }
+
+
+async function swap(i,j,array) {
+    let temp = array[j]
+    array[j] = array[i]
+    array[i] = temp
+    console.log(array)
+    removeDivsQuick()
+  }
+
+  
+
+  function setDivsQuickSort() {
+    for(let x = 0; x < array_length; x++){
+    $(`<span id='arraynumsquick${x}' />`).text(array[x]).appendTo('#quick');
+    let elem = document.getElementById(`arraynumsquick${x}`);
+    elem.style.height = array[x] + "10px";
+    elem.style.backgroundColor ="green"
+    elem.style.padding = "20px"
+    elem.style.color = "white"
+    elem.style.display = "block"
+    elem.style.margin = "5px"
+    elem.style.float = "left"
+    }
+}
+
+
+
+function removeDivsQuick(){
+    for(let j = 0; j < array_length; j++){
+        let elem = document.getElementById(`arraynumsquick${j}`);
+        elem.parentNode.removeChild(elem)
+        //$(`<span id='arraynums${j}' />`).remove()
+    }
+}
