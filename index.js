@@ -2,8 +2,6 @@ let array_length = prompt("Enter length of array to be sorted")
 let array = []
 for(let k = 0; k < array_length; k++){
     array.push(Math.floor(Math.random()*10))
-
-    //$("<div class='arraynums' />").text(array[k]).appendTo('body');
 }
 async function bubbleSort() {
     
@@ -13,9 +11,6 @@ async function bubbleSort() {
                 setDivs()
                 await swapping(array,j,j+1)
                 console.log(array)
-                //populateData()
-                
-                //depopulateData()
             }
         }
     } //console.log(array)
@@ -23,6 +18,33 @@ async function bubbleSort() {
    setDivs()
    
 }
+
+function quickSort() {
+    if (array.length <= 1) { 
+        setDivsQuickSort()
+        return array;
+    } else {
+
+        let left = [];
+        let right = [];
+        let newArray = [];
+        let pivot = array.pop();
+        let length = array.length;
+        for (let i = 0; i < length; i++) {
+            console.log(array)
+            setDivsQuickSort()
+            if (array[i] <= pivot) {
+                left.push(array[i]);
+            } else {
+                right.push(array[i]);
+            }
+        }
+
+        return newArray.concat(quickSort(left), pivot, quickSort(right));
+    }
+    
+}
+
 
 async function insertionSort() {
     
@@ -124,6 +146,21 @@ function setDivsInsertion() {
     }
 }
 
+function setDivsQuickSort() {
+    for(let x = 0; x < array_length; x++){
+    $(`<span id='arraynumsquick${x}' />`).text(array[x]).appendTo('body');
+    let elem = document.getElementById(`arraynumsquick${x}`);
+    elem.style.height = array[x] + "10px";
+    elem.style.width = "10px";
+    elem.style.backgroundColor = "black"
+    elem.style.padding = "10px"
+    elem.style.color = "white"
+    elem.style.display = "block"
+    elem.style.margin = "5px"
+    elem.style.float = "right"
+    }
+}
+
 function removeDivs(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynums${j}`);
@@ -171,3 +208,5 @@ function sleep(ms){
 //     }
 // }
 // populateData()
+
+
