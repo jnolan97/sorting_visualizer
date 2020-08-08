@@ -10,9 +10,9 @@ async function quickSort(){
 }
 
 async function quickSortHelper(array, start, end) {
+    removeDivsQuick()
     setDivsQuickSort()
     await sleep(1000)
-    removeDivsQuick()
     
 console.log(array)
   if (start >= end) return;
@@ -68,7 +68,9 @@ async function swap(i,j,array) {
 function removeDivsQuick(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynumsquick${j}`);
-        elem.parentNode.removeChild(elem)
+        if (elem != null){
+            elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }

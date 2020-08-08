@@ -8,6 +8,7 @@ async function bubbleSort() {
     for(let i = 0; i < array.length; i++){
         for(let j = 0; j < array.length - 1; j++){
             if(array[j] > array[j+1]){
+               removeDivs()
                 setDivs()
                 await swapping(array,j,j+1)
                 console.log(array)
@@ -15,6 +16,7 @@ async function bubbleSort() {
         }
     } //console.log(array)
    //depopulateData()
+   removeDivs()
    setDivs()
 }
 function mergeHelper(){
@@ -33,9 +35,9 @@ async function mergeSort(array) {
       array = array0, array0 = array1, array1 = array;
       await sleep(1000)
       console.log("display",arrays)
+      removeDivsMerge()
       setDivsMerge()
       await sleep(1000)
-      removeDivsMerge()
     }
   
   async function merge(left, right, end) {
@@ -44,89 +46,13 @@ async function mergeSort(array) {
      }
    }
 //    console.log('mergesort',arrays)
-setDivsMerge()
+//setDivsMerge()
    return arrays;
   
   } 
 
-//  async function merge(array){
-//     const middle = Math.floor(array.length / 2)
-//     const left = array.slice(0,middle)
-//     const right = array.slice(middle)
-//    // console.log("right",left)
-//     if(array.length <= 1){
-//         return array
-//     }
 
 
-/* function quickSort() {
-    if (array.length <= 1) { 
-        setDivsQuickSort()
-        return array;
-    } else {
-
-        let left = [];
-        let right = [];
-        let newArray = [];
-        let pivot = array.pop();
-        let length = array.length;
-        for (let i = 0; i < length; i++) {
-            console.log("quick",array)
-            
-            if (array[i] <= pivot) {
-                left.push(array[i]);
-            } else {
-                right.push(array[i]);
-            }
-        }
-        setDivsQuickSort()
-        return newArray.concat(quickSort(left), pivot, quickSort(right));
-    }
-    
-} */
-
-
-
-//    await mergeSort(merge(left),merge(right))
-// }
-// async function mergeSort(left,right){
-//     let values = []
-//     let leftIndex = 0
-//     let rightIndex = 0
-//     // if(array.length <= 1){
-//     //     return values
-//     // }
-//     while (leftIndex <= left.length && rightIndex < right.length){
-//         if (left[leftIndex] < right[rightIndex]){
-//             values.push(left[leftIndex])
-//           //  console.log("merging",values)
-//             leftIndex++
-//         } else {
-//             values.push(right[rightIndex])
-//           //  console.log("merging",values)
-//             rightIndex++
-//         }
-//     }
-//     // for(let j=0; j<left.length; j++){
-//     //     values.push(left[j])
-//     // }
-
-//     // console.log("mergesort", left,right)
-//     console.log("sorted",values)
-//     // await sleep(1000)
-//      values //.concat(left.length ? left:right)
-//     .concat(left.slice(leftIndex))
-//     .concat(right.slice(rightIndex))
-//     for(let k=0; k<right.length; k++){
-//         await values.push(right[k])
-//     }
-//     // return returnValues(values)
-// }
-// async function returnValues(values){
-//     await sleep(1000)
-//     console.log('values',values)
-//     return values
-// }
 
 async function insertionSort() {
     
@@ -168,7 +94,6 @@ async function swapping(array,i,j) {
     array[j] = temp
     await sleep(1000)
 
-    removeDivs()
 }
 
 async function swap(array,i,j) {
@@ -237,7 +162,9 @@ function setDivsQuickSort() {
 function removeDivs(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynums${j}`);
+        if(elem != null){
         elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
@@ -252,7 +179,9 @@ function removeDivsInsertion(){
 function removeDivsMerge(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynumsmerge${j}`);
-        elem.parentNode.removeChild(elem)
+        if (elem != null){
+            elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
@@ -270,22 +199,6 @@ function removeDivsMerge(){
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
 }
-// function populateData() {
-//     document.getElementById("array").style.backgroundSize = 200
-//     document.getElementById("array").style.backgroundColor = "red"
-//     for(let a = 0; a < array_length; a++){
-//        //document.getElementById("array").append(array[a])
-//        document.getElementById("array").innerHTML = array
-        
-//     }
-// }
-
-// function depopulateData(){
-//     for(let a = 0; a < array_length; a++){
-//         document.getElementById("array").innerHTML = ""
-        
-//     }
-// }
 
 function setDivsMerge() {
     for(let x = 0; x < array_length; x++){
@@ -307,6 +220,7 @@ async function quickSort(){
 }
 
 async function quickSortHelper(array, start, end) {
+    removeDivsQuick()
     setDivsQuickSort()
     await sleep(1000)
     
@@ -342,7 +256,6 @@ async function swap(i,j,array) {
     array[j] = array[i]
     array[i] = temp
     console.log(array)
-    removeDivsQuick()
   }
 
   
@@ -366,7 +279,9 @@ async function swap(i,j,array) {
 function removeDivsQuick(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynumsquick${j}`);
-        elem.parentNode.removeChild(elem)
+        if (elem != null){
+            elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
