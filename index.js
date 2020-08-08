@@ -38,7 +38,21 @@ async function mergeSort(array) {
       removeDivsMerge()
       setDivsMerge()
       await sleep(1000)
+      finalCheck(array0)
     }
+async function finalCheck(array0){
+    for(let i = 0; i < array_length-1; i++){
+        let min = array0[i]
+        if (array0[i+1] < min){
+            let temp = array0[i]
+            array0[i] = array0[i+1]
+            array0[i+1] = temp
+            await sleep(1000)
+        }
+    }
+    removeDivsMerge()
+    setDivsMerge()
+}
   
   async function merge(left, right, end) {
     for (var i0 = left, i1 = right, j = left; j < end; ++j) {
@@ -47,6 +61,7 @@ async function mergeSort(array) {
    }
 //    console.log('mergesort',arrays)
 //setDivsMerge()
+
    return arrays;
   
   } 
