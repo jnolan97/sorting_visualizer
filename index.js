@@ -55,22 +55,22 @@ async function mergeSort(array) {
 
 
 async function insertionSort() {
-    
-    for(let i = 0; i < array.length; i++){
-        for(let j = 0; j < array.length - 1; j++){
-            if(array[j] > array[j+1]){
+    let i = 1;
+    while (i < array_length){
+        let j = i
+        while(j > 0){
+            if(array[j-1] > array[j]){
+                removeDivsInsertion()
                 setDivsInsertion()
-                await swap(array,j,j+1)
-                console.log(array)
-                //populateData()
-                
-                //depopulateData()
+                await swap(array,array[j],array[j-1])
+                await sleep(1000)
             }
+           j = j - 1
         }
-    } //console.log(array)
-   //depopulateData()
-   setDivsInsertion()
-   
+        i = i + 1
+    }
+    removeDivsInsertion()
+    setDivsInsertion()
 }
 // async function swapping(array,i,j) {
 // }
@@ -103,7 +103,7 @@ async function swap(array,i,j) {
     array[j] = temp
     await sleep(1000)
 
-    removeDivsInsertion()
+    //removeDivsInsertion()
 }
 
  function populateData() {
@@ -133,8 +133,8 @@ function setDivs() {
 
 function setDivsInsertion() {
     for(let x = 0; x < array_length; x++){
-    $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('#insertion');
-    let elem = document.getElementById(`arraynums2${x}`);
+    $(`<span id='arraynumsinsert${x}' />`).text(array[x]).appendTo('#insertion');
+    let elem = document.getElementById(`arraynumsinsert${x}`);
     elem.style.height = array[x] + "10px";
     elem.style.backgroundColor = "black"
     elem.style.padding = "20px"
@@ -170,8 +170,10 @@ function removeDivs(){
 }
 function removeDivsInsertion(){
     for(let j = 0; j < array_length; j++){
-        let elem = document.getElementById(`arraynums2${j}`);
+        let elem = document.getElementById(`arraynumsinsert${j}`);
+        if (elem != null){
         elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
