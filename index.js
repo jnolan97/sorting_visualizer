@@ -8,6 +8,7 @@ async function bubbleSort() {
     for(let i = 0; i < array.length; i++){
         for(let j = 0; j < array.length - 1; j++){
             if(array[j] > array[j+1]){
+               removeDivs()
                 setDivs()
                 await swapping(array,j,j+1)
                 console.log(array)
@@ -15,6 +16,7 @@ async function bubbleSort() {
         }
     } //console.log(array)
    //depopulateData()
+   removeDivs()
    setDivs()
 }
 function mergeHelper(){
@@ -44,7 +46,7 @@ async function mergeSort(array) {
      }
    }
 //    console.log('mergesort',arrays)
-setDivsMerge()
+//setDivsMerge()
    return arrays;
   
   } 
@@ -92,7 +94,6 @@ async function swapping(array,i,j) {
     array[j] = temp
     await sleep(1000)
 
-    removeDivs()
 }
 
 async function swap(array,i,j) {
@@ -161,7 +162,9 @@ function setDivsQuickSort() {
 function removeDivs(){
     for(let j = 0; j < array_length; j++){
         let elem = document.getElementById(`arraynums${j}`);
+        if(elem != null){
         elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
