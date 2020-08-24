@@ -163,13 +163,11 @@ function mergeHelper(){
         let min = array0[i]
         if (array0[i+1] < min){
             isSorted = false
-            let temp = array0[i]
-            array0[i] = array0[i+1]
-            array0[i+1] = temp
-            await sleep(1000)
-        }
+      await sleep(1000)
+      finalCheck(array0)
     }
 }
+    }
     removeDivsMerge()
     setDivsMerge()
     console.log(array0)
@@ -178,6 +176,11 @@ function mergeHelper(){
 
 async function merge(left, right, end) {
     finalCheck(array0)
+    removeDivsMerge()
+    setDivsMerge()
+}
+  
+  async function merge(left, right, end) {
     for (var i0 = left, i1 = right, j = left; j < end; ++j) {
       array1[j] = array0[i0 < right && (i1 >= end || array0[i0] <= array0[i1]) ? i0++ : i1++];
      }
@@ -220,10 +223,25 @@ async function insertionSort() {
             if(array[j] > array[j+1]){
                 setDivsInsertion()
                 await swaps(array,j,j+1)
+    let i = 1;
+    while (i < array_length){
+        let j = i
+        while(j > 0){
+            if(array[j-1] > array[j]){
+                removeDivsInsertion()
+                setDivsInsertion()
+                await swap(array,array[j],array[j-1])
+                await sleep(1000)
             }
+           j = j - 1
         }
+
     }
    setDivsInsertion()
+        i = i + 1
+    }
+    removeDivsInsertion()
+    setDivsInsertion()
 }
 
 
@@ -233,13 +251,15 @@ async function swaps(array,i,j) {
     array[j] = temp
     await sleep(1000)
     removeDivsInsertion()
+
+    //removeDivsInsertion()
 }
 
 
 function setDivsInsertion() {
     for(let x = 0; x < array_length; x++){
-    $(`<span id='arraynums2${x}' />`).text(array[x]).appendTo('#insertion');
-    let elem = document.getElementById(`arraynums2${x}`);
+    $(`<span id='arraynumsinsert${x}' />`).text(array[x]).appendTo('#insertion');
+    let elem = document.getElementById(`arraynumsinsert${x}`);
     elem.style.height = array[x] + "10px";
     elem.style.backgroundColor = "black"
     elem.style.padding = "20px"
@@ -253,8 +273,10 @@ function setDivsInsertion() {
 
 function removeDivsInsertion(){
     for(let j = 0; j < array_length; j++){
-        let elem = document.getElementById(`arraynums2${j}`);
+        let elem = document.getElementById(`arraynumsinsert${j}`);
+        if (elem != null){
         elem.parentNode.removeChild(elem)
+        }
         //$(`<span id='arraynums${j}' />`).remove()
     }
 }
