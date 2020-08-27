@@ -1,7 +1,20 @@
 let array_length = prompt("Enter length of array to be sorted")
+let rangeslider = document.getElementById("sliderRange")
+let output = document.getElementById("demo")
+output.innerHTML = rangeslider.value;
+let v = rangeslider.value;
 let array = []
 for(let k = 0; k < array_length; k++){
     array.push(Math.floor(Math.random()*10))
+}
+
+rangeslider.oninput = function () {
+    output.innerHTML = this.value;
+    v = this.value;
+    values = new Array(Number(v));
+    for(let k = 0; k < values.length; k++){
+        array.push(Math.floor(Math.random()*10))
+    }
 }
 
 
@@ -358,6 +371,3 @@ function removeDivsQuick(){
 function sleep(ms){
     return new Promise(resolve => setTimeout(resolve,ms))
 }
-
-
-
