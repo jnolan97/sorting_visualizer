@@ -11,9 +11,19 @@ let array = []
 rangeslider.oninput = function () {
     output.innerHTML = this.value;
     v = this.value;
-    values = new Array(Number(v));
-    for(let k = 0; k < values.length; k++){
-        array.push(Math.floor(Math.random()*10))
+    array = new Array(Number(v));
+    for(let k = 0; k < array.length; k++){
+        //array.push(Math.floor(Math.random()*10))
+        array[k] = Math.floor(Math.random()*10)
+        $(`<span id='arraynums${k}' />`).text(array[k]).appendTo('#bubble');
+        let elem = document.getElementById(`arraynums${k}`);
+        elem.style.height = array[k] + "10px";
+        elem.style.backgroundColor = "pink"
+        elem.style.padding = "20px"
+        elem.style.color = "white"
+        elem.style.display = "block"
+        elem.style.margin = "5px"
+        elem.style.float = "left"
     }
 }
 let array_length = array.length;
