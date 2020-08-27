@@ -1,12 +1,12 @@
-let array_length = prompt("Enter length of array to be sorted")
+//let array_length = prompt("Enter length of array to be sorted")
 let rangeslider = document.getElementById("sliderRange")
 let output = document.getElementById("demo")
 output.innerHTML = rangeslider.value;
 let v = rangeslider.value;
 let array = []
-for(let k = 0; k < array_length; k++){
-    array.push(Math.floor(Math.random()*10))
-}
+// for(let k = 0; k < array_length; k++){
+//     array.push(Math.floor(Math.random()*10))
+// }
 
 rangeslider.oninput = function () {
     output.innerHTML = this.value;
@@ -16,6 +16,7 @@ rangeslider.oninput = function () {
         array.push(Math.floor(Math.random()*10))
     }
 }
+let array_length = array.length;
 
 
 //*******************BUBBLE SORT***********************/
@@ -231,11 +232,6 @@ function setDivsMerge() {
 
 //*******************INSERTION SORT***********************//
 async function insertionSort() {
-    for(let i = 0; i < array.length; i++){
-        for(let j = 0; j < array.length - 1; j++){
-            if(array[j] > array[j+1]){
-                setDivsInsertion()
-                await swaps(array,j,j+1)
     let i = 1;
     while (i < array_length){
         let j = i
@@ -252,7 +248,6 @@ async function insertionSort() {
     }
    setDivsInsertion()
         i = i + 1
-    }
     removeDivsInsertion()
     setDivsInsertion()
 }
